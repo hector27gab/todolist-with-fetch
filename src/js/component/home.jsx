@@ -28,13 +28,14 @@ const Home = () => {
 			}]),
 			headers: {'Content-Type': 'application/json'}
 		})
+		getTasks();
 	}
-
+	
 	const handleChange = (e) => {
 		const value = e.target.value;
 		setMyNewTask(value);
 	}
-
+	
 	const removeTask = async (index) => {
 		const deleteTask = tasksData.filter((element, indice) => indice !== index);
 		const response = await fetch(endpoint, {
@@ -42,8 +43,9 @@ const Home = () => {
 			body: JSON.stringify(deleteTask),
 			headers: {'Content-Type': 'application/json'}
 		})
+		getTasks();
 	}
-
+	
 	useEffect(() => {
 		getTasks();
 	},[])
@@ -86,5 +88,6 @@ const Home = () => {
 		</>
 	);
 };
+
 
 export default Home;
